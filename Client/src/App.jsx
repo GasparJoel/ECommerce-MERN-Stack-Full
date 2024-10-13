@@ -18,6 +18,9 @@ function App() {
           <Route path="register"element={<AuthRegiter/>}/>
         </Route>
 
+        <Route path="/admin" element={<AdminLayout/>} >
+
+        </Route>
 
        
       </Routes>
