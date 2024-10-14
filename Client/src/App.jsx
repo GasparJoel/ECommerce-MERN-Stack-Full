@@ -7,16 +7,19 @@ import { AdminProducts } from "./pages/admin-view/products"
 import { AdminOrders } from "./pages/admin-view/orders"
 import { AdminFeatures } from "./pages/admin-view/features"
 import { AdminLayout } from "./pages/admin-view/layout"
+import { Shoppinglayout } from "./pages/shopping-view/layout"
+import { NotFound } from "./pages/not-found"
+import { ShoppingHome } from "./pages/shopping-view/home"
+import { ShoppingListing } from "./pages/shopping-view/listing"
+import { ShoppingChekout } from "./pages/shopping-view/chekout"
+import { ShoppingAccount } from "./pages/shopping-view/account"
 
 
 function App() {
   
 
   return (
-    <div className="flex flex-col overflow-hidden">
-
-      <h1>Header Components </h1>
-   
+    <div className="flex flex-col overflow-hidden"> 
       <Routes>
         <Route path="/auth" element={ <AuthLayout/> }>
           <Route path="login" element={<AuthLogin/>}/>
@@ -30,6 +33,14 @@ function App() {
           <Route path="features" element={<AdminFeatures/>} />
         </Route>
 
+        <Route path={"/shop"} element={ <Shoppinglayout/> }> 
+          <Route path="home" element={<ShoppingHome/>}/>
+          <Route path="listing" element={<ShoppingListing/>}/>
+          <Route path="checout" element={<ShoppingChekout/>}/>
+          <Route path="account" element={<ShoppingAccount/>}/>
+      
+        </Route>
+        <Route path="*" element={<NotFound/>}/>
        
       </Routes>
     </div>
