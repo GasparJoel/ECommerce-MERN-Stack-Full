@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { AuthLayout } from "./components/auth/layout"
+
 import { AuthLogin } from "./pages/auth/login"
 import { AuthRegiter } from "./pages/auth/register"
 import { AdminDashboard } from "./pages/admin-view/dashboard"
@@ -14,6 +14,7 @@ import { ShoppingListing } from "./pages/shopping-view/listing"
 import { ShoppingChekout } from "./pages/shopping-view/chekout"
 import { ShoppingAccount } from "./pages/shopping-view/account"
 import { CheckAuth } from "./components/common/check-auth"
+import { AuthLayout } from "./components/auth/layout"
 
 
 function App() {
@@ -27,14 +28,19 @@ function App() {
         <Route path="/auth" element={ 
           <CheckAuth isAuthenticated ={isAuthenticated} user = {user} >
             <AuthLayout/>
-          </CheckAuth>
+           </CheckAuth>
           
           }>
           <Route path="login" element={<AuthLogin/>}/>
           <Route path="register"element={<AuthRegiter/>}/>
         </Route>
 
-        <Route path="/admin" element={<AdminLayout/>} >
+        <Route path="/admin" element={
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <AdminLayout/>
+          </CheckAuth>
+          
+          } >
           <Route path="dashboard" element={<AdminDashboard/>} />
           <Route path="products" element={<AdminProducts/>} />
           <Route path="orders" element={<AdminOrders/>} />
