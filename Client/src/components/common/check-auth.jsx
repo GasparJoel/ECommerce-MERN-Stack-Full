@@ -21,18 +21,16 @@ export const CheckAuth = ({isAuthenticated ,user,children}) => {
             if(user?.role === "admin") return <Navigate to={'/admin/dashboard'} />
             return <Navigate to={'/shop/home'} />
          }   
-
+         //Si esta autenticado y no es  admin y quiere ingresar al page admin  retorne al page unauth-page  
          if(isAuthenticated && user?.role !== "admin" && location.pathname.includes('admin'))
             {
                 return <Navigate to={'/unauth-page'}/>
             }
-
+         //Si esta autenticado y tiene el rol de admin y quiere ingresar a shop retornara a admin dashboard
             if (isAuthenticated && user?.role ==='admin' && location.pathname.includes('shop') ) {
                 return <Navigate to={'/admin/dashboard'}/>
             }
 
-  return (
-    <div>checkauth</div>
-  )
+  return <>{children}</>
 }
 

@@ -13,15 +13,23 @@ import { ShoppingHome } from "./pages/shopping-view/home"
 import { ShoppingListing } from "./pages/shopping-view/listing"
 import { ShoppingChekout } from "./pages/shopping-view/chekout"
 import { ShoppingAccount } from "./pages/shopping-view/account"
+import { CheckAuth } from "./components/common/check-auth"
 
 
 function App() {
   
+  const isAuthenticated = false ; 
+  const user = null ;
 
   return (
     <div className="flex flex-col overflow-hidden"> 
       <Routes>
-        <Route path="/auth" element={ <AuthLayout/> }>
+        <Route path="/auth" element={ 
+          <CheckAuth isAuthenticated ={isAuthenticated} user = {user} >
+            <AuthLayout/>
+          </CheckAuth>
+          
+          }>
           <Route path="login" element={<AuthLogin/>}/>
           <Route path="register"element={<AuthRegiter/>}/>
         </Route>
