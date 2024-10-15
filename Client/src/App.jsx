@@ -6,8 +6,8 @@ import { AdminDashboard } from "./pages/admin-view/dashboard"
 import { AdminProducts } from "./pages/admin-view/products"
 import { AdminOrders } from "./pages/admin-view/orders"
 import { AdminFeatures } from "./pages/admin-view/features"
-import { AdminLayout } from "./pages/admin-view/layout"
-import { Shoppinglayout } from "./pages/shopping-view/layout"
+import { AdminLayout } from "./components/admin-view/layout"
+import { Shoppinglayout } from "./components/shopping-view/layout"
 import { NotFound } from "./pages/not-found"
 import { ShoppingHome } from "./pages/shopping-view/home"
 import { ShoppingListing } from "./pages/shopping-view/listing"
@@ -36,7 +36,7 @@ function App() {
         <Route path={"/shop"} element={ <Shoppinglayout/> }> 
           <Route path="home" element={<ShoppingHome/>}/>
           <Route path="listing" element={<ShoppingListing/>}/>
-          <Route path="checout" element={<ShoppingChekout/>}/>
+          <Route path="chekout" element={<ShoppingChekout/>}/>
           <Route path="account" element={<ShoppingAccount/>}/>
       
         </Route>

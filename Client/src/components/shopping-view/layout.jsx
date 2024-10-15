@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom"
 import { ShoppingHeader } from "./header"
 
 
+
 export const Shoppinglayout = () => {
   return (
 
