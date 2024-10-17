@@ -15,12 +15,12 @@ import { ShoppingChekout } from "./pages/shopping-view/chekout"
 import { ShoppingAccount } from "./pages/shopping-view/account"
 import { CheckAuth } from "./components/common/check-auth"
 import { AuthLayout } from "./components/auth/layout"
-import { UnauthPage } from "./pages/unauth-page/inedx"
+import { UnauthPage } from "./pages/unauth-page"
 
 
 function App() {
   
-  const isAuthenticated = true ; 
+  const isAuthenticated = false ; 
   const user = {
     name :"Joel",
     role:"user",

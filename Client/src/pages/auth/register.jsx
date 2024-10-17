@@ -1,8 +1,12 @@
 
 
-export const AuthRegiter = () => {
+
+export const CommonForm = () => {
     return (
-      <div>Register</div>
+      <div>
+        Register
+       
+      </div>
     )
   }
   
