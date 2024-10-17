@@ -15,12 +15,16 @@ import { ShoppingChekout } from "./pages/shopping-view/chekout"
 import { ShoppingAccount } from "./pages/shopping-view/account"
 import { CheckAuth } from "./components/common/check-auth"
 import { AuthLayout } from "./components/auth/layout"
+import { UnauthPage } from "./pages/unauth-page/inedx"
 
 
 function App() {
   
-  const isAuthenticated = false ; 
-  const user = null ;
+  const isAuthenticated = true ; 
+  const user = {
+    name :"Joel",
+    role:"user",
+  } ;
 
   return (
     <div className="flex flex-col overflow-hidden"> 
@@ -47,7 +51,14 @@ function App() {
           <Route path="features" element={<AdminFeatures/>} />
         </Route>
 
-        <Route path={"/shop"} element={ <Shoppinglayout/> }> 
+        <Route path={"/shop"} element={ 
+
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+              <Shoppinglayout/>
+          </CheckAuth>
+          
+          
+          }> 
           <Route path="home" element={<ShoppingHome/>}/>
           <Route path="listing" element={<ShoppingListing/>}/>
           <Route path="chekout" element={<ShoppingChekout/>}/>
@@ -55,6 +66,7 @@ function App() {
       
         </Route>
         <Route path="*" element={<NotFound/>}/>
+        <Route path="/unauth-page" element={<UnauthPage/>} />
        
       </Routes>
     </div>
