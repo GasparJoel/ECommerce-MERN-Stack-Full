@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 
 import { AuthLogin } from "./pages/auth/login"
-import { AuthRegiter } from "./pages/auth/register"
+
 import { AdminDashboard } from "./pages/admin-view/dashboard"
 import { AdminProducts } from "./pages/admin-view/products"
 import { AdminOrders } from "./pages/admin-view/orders"
@@ -16,6 +16,7 @@ import { ShoppingAccount } from "./pages/shopping-view/account"
 import { CheckAuth } from "./components/common/check-auth"
 import { AuthLayout } from "./components/auth/layout"
 import { UnauthPage } from "./pages/unauth-page"
+import { AuthRegister } from "./pages/auth/register"
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
           
           }>
           <Route path="login" element={<AuthLogin/>}/>
-          <Route path="register"element={<AuthRegiter/>}/>
+          <Route path="register"element={<AuthRegister/>}/>
         </Route>
 
         <Route path="/admin" element={
