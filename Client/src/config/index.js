@@ -26,5 +26,6 @@ export const registerFormControls = [
         type:'password',
 
 
-    }
+    },
+
 ]
