@@ -104,7 +104,7 @@ export const CommonForm = ({ formControls, formData, setFormData, onSubmit, butt
           </div>
         ))}
       </div>
-      <Button type="Submit" className="mt-2 w-full">
+      <Button type="Submit" className="mt-2 w-full bg-slate-900 text-white" >
         {buttonText || 'Submit'}
       </Button>
     </form>
