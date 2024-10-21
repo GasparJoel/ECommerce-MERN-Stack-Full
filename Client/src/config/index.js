@@ -29,3 +29,26 @@ export const registerFormControls = [
     },
 
 ]
+
+export const loginFormControls = [
+  
+    {
+        name: 'email',
+        label :'Email',
+        placeholder:' Enter you email',
+        componentType:'input',
+        type:'email',
+
+
+    },
+    {
+        name: 'password',
+        label :'Password',
+        placeholder:' Enter you password',
+        componentType:'input',
+        type:'password',
+
+
+    },
+
+]
