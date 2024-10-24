@@ -1,13 +1,16 @@
-import { bcrypt } from "bcryptjs";
-import { jwt } from "jsonwebtoken";
-import User from "../../models/User";
+import  bcrypt  from "bcryptjs";
+import  jwt  from "jsonwebtoken";
+import User from "../../models/User.js";
 
 
 //Register
-export const register = async(req,res)=>{
+export const registerUser = async(req,res)=>{
      const { userName, email,password }=req.body
 
      try {
+        //Verificamos la duplicidad de email and username 
+        const userFound = await User.findOne({email})
+        if(userFound) return res.status(400).json({message:"The email is duplicated"})
         //Incriptar password
         const hashPassword = await bcrypt.hash(password,12);
         //Crear nuevo usuario
@@ -17,11 +20,17 @@ export const register = async(req,res)=>{
             password:hashPassword
         })
         //almacenar nuevo usuario
-        await newUser.save()
-        res.status(200).json({
-            success:false,
-            message:'registration successfull'
+       const newUserSaved = await newUser.save()
+        res.status(201).json({
+            id:newUserSaved._id,
+            name:newUserSaved.userName,
+            email:newUserSaved.email,
+            rol :newUserSaved.rol,
+            createdAt:newUserSaved.createdAt,
+            updatedAt:newUserSaved.updatedAt,
         })
+
+        console.log(newUser)
      } catch (error) {
         console.log(error)
         res.status(500).json({
