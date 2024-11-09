@@ -22,7 +22,7 @@ export const AuthRegister = () => {
   const navigate=useNavigate()
   const onSubmit=(event)=>{
       event.preventDefault()
-      dispatch(registerUser(formData)).then(()=> navigate('/auth/login'))
+      dispatch(registerUser(formData)).then((data)=> console.log(data))
   }
 
   console.log(formData)
