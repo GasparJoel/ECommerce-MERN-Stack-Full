@@ -11,6 +11,7 @@ export const Shoppinglayout = () => {
         {/* common header*/}
        <ShoppingHeader/> 
         <main className="flex flex-col w-full">
+          {/* El outlet es para que se muestre el contenido de los routes que estan dentro  */}
             <Outlet/>
 
         </main>

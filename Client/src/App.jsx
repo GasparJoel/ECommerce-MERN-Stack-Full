@@ -30,6 +30,7 @@ function App() {
   return (
     <div className="flex flex-col overflow-hidden"> 
       <Routes>
+        {/* VISTAS DE LOGIN Y REGISTER  */}
         <Route path="/auth" element={ 
           <CheckAuth isAuthenticated ={isAuthenticated} user = {user} >
             <AuthLayout/>
@@ -40,6 +41,7 @@ function App() {
           <Route path="register"element={<AuthRegister/>}/>
         </Route>
 
+        {/* VISTAS DE ADMIN  */}
         <Route path="/admin" element={
           <CheckAuth isAuthenticated={isAuthenticated} user={user}>
             <AdminLayout/>
@@ -52,20 +54,23 @@ function App() {
           <Route path="features" element={<AdminFeatures/>} />
         </Route>
 
+        {/* VISTAS DE shop  */}
         <Route path={"/shop"} element={ 
 
           <CheckAuth isAuthenticated={isAuthenticated} user={user}>
               <Shoppinglayout/>
           </CheckAuth>
-          
-          
           }> 
+
           <Route path="home" element={<ShoppingHome/>}/>
           <Route path="listing" element={<ShoppingListing/>}/>
           <Route path="chekout" element={<ShoppingChekout/>}/>
           <Route path="account" element={<ShoppingAccount/>}/>
       
         </Route>
+
+        
+           {/* VISTAS GENERAL DE TODOS   */}
         <Route path="*" element={<NotFound/>}/>
         <Route path="/unauth-page" element={<UnauthPage/>} />
        
