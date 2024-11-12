@@ -16,7 +16,7 @@ export const registerUser = createAsyncThunk(
       { withCredentials: true }
     );
 
-    return response.data
+    return {success:true ,data:response.data , message:'Create User Fullfiled'}
   }
 );
 
