@@ -20,6 +20,8 @@ export const AuthRegister = () => {
   const dispatch = useDispatch()
   //Para navegar
   const navigate=useNavigate()
+
+  //Evento para registrar 
   const onSubmit=(event)=>{
       event.preventDefault()
       dispatch(registerUser(formData)).then((data)=> console.log(data))
