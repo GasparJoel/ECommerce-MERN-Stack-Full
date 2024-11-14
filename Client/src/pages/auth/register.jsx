@@ -26,19 +26,24 @@ export const AuthRegister = () => {
   const { toast} = useToast()
 
   //Evento para registrar 
-  const onSubmit=(event)=>{
-      event.preventDefault()
-      dispatch(registerUser(formData)).then((data)=> {
-         // Si el registro fue exitoso, navega a la página de login.
-         if (data?.payload?.success) {
-
-          toast({
-            title :data?.payload?.message,
-          })
-          navigate('/auth/login');
-        }
-        console.log(data)})
-  }
+  const onSubmit = (event) => {
+    event.preventDefault();
+    dispatch(registerUser(formData)).then((data) => {
+      if (data.payload?.success) {
+        toast({
+          title: data.payload.message,
+          type: 'success'
+        });
+        navigate('/auth/login');
+      } else {
+        toast({
+          title: data.payload?.message || "Registration failed",
+          type: 'error'
+        });
+      }
+      console.log(data);
+    });
+  };
 
   console.log(formData)
 

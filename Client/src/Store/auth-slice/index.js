@@ -9,14 +9,21 @@ const initialState = {
 
 export const registerUser = createAsyncThunk(
   "/auth/register",
-  async (formdata) => {
-    const response = await axios.post(
-      "http://localhost:5000/api/auth/register",
-      formdata,
-      { withCredentials: true }
-    );
-
-    return {success:true ,data:response.data , message:'Create User Fullfiled'}
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        formData,
+        { withCredentials: true }
+      );
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(error.response.data); // Envía el mensaje de error del servidor
+      } else {
+        return rejectWithValue({ message: "Unexpected error occurred" });
+      }
+    }
   }
 );
 
