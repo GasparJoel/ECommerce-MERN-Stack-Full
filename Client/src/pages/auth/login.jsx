@@ -1,7 +1,9 @@
 import { CommonForm } from "@/components/common/form";
 import { loginFormControls} from "@/config";
+import { loginUser } from "@/Store/auth-slice";
 import {  } from "module";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 
@@ -14,9 +16,14 @@ const initialState={
 }
 
   const [formData, setFormData] = useState(initialState)
+  const dispatch = useDispatch()
 
-  const onSubmit =()=>{
+  const onSubmit =(event)=>{
+    event.preventDefault()
 
+    dispatch(loginUser(formData)).then(data=>{
+      console.log(data)
+    })
   }
   return (
     <div className="mx-auto w-full  max-w-md space-y-6  ">

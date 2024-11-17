@@ -31,21 +31,24 @@ export const AuthRegister = () => {
     dispatch(registerUser(formData)).then((data) => {
       if (data.payload?.success) {
         toast({
+          
           title: data.payload.message,
-          type: 'success'
+          type: 'success',
+       
         });
         navigate('/auth/login');
       } else {
         toast({
+          variant: "destructive",
           title: data.payload?.message || "Registration failed",
-          type: 'error'
+          
         });
       }
       console.log(data);
     });
   };
 
-  console.log(formData)
+  // console.log(formData)
 
   return (
     <div className="mx-auto w-full max-w-md space-y-6">

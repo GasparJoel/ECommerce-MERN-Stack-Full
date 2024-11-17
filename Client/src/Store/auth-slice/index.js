@@ -27,6 +27,27 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+
+export const loginUser = createAsyncThunk(
+  "/auth/login",
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData,
+        { withCredentials: true }
+      );
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(error.response.data); // Envía el mensaje de error del servidor
+      } else {
+        return rejectWithValue({ message: "Unexpected error occurred" });
+      }
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -45,6 +66,18 @@ const authSlice = createSlice({
         state.user = null
         state.isAuthenticate=false
     })
+
+    builder.addCase(loginUser.pending,(state)=>{
+      state.isLoading=true
+  }).addCase(loginUser.fulfilled,(state,action)=>{
+      state.isLoading= false
+      state.user = action.payload
+      state.isAuthenticate=true
+  }).addCase(loginUser.rejected,(state)=>{
+      state.isLoading= false
+      state.user = null
+      state.isAuthenticate=false
+  })
   }
 });
 
