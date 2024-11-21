@@ -17,22 +17,25 @@ import { CheckAuth } from "./components/common/check-auth"
 import { AuthLayout } from "./components/auth/layout"
 import { UnauthPage } from "./pages/unauth-page"
 import { AuthRegister } from "./pages/auth/register"
+import { useSelector } from "react-redux"
 
 
 function App() {
-  
-  const isAuthenticated = false ; 
-  const user = {
-    name :"Joel",
-    role:"user",
-  } ;
+  // prueba 
+  // const isAuthenticated = false ; 
+  // const user = {
+  //   name :"Joel",
+  //   role:"user",
+  // } ;
+
+  const {user, isAuthenticate} = useSelector(state=>state.auth)
 
   return (
     <div className="flex flex-col overflow-hidden"> 
       <Routes>
         {/* VISTAS DE LOGIN Y REGISTER  */}
         <Route path="/auth" element={ 
-          <CheckAuth isAuthenticated ={isAuthenticated} user = {user} >
+          <CheckAuth isAuthenticated ={isAuthenticate} user = {user} >
             <AuthLayout/>
            </CheckAuth>
           
@@ -43,7 +46,7 @@ function App() {
 
         {/* VISTAS DE ADMIN  */}
         <Route path="/admin" element={
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth isAuthenticated={isAuthenticate} user={user}>
             <AdminLayout/>
           </CheckAuth>
           
@@ -57,7 +60,7 @@ function App() {
         {/* VISTAS DE shop  */}
         <Route path={"/shop"} element={ 
 
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth isAuthenticated={isAuthenticate} user={user}>
               <Shoppinglayout/>
           </CheckAuth>
           }> 
