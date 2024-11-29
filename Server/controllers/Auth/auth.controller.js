@@ -94,4 +94,32 @@ export const loginUser =async(req,res)=>{
 }
 //logout
 
-//auth Midleware
+export const  logouth = async(req,res)=>{
+  res.clearCookie('token').json({
+    success: true,
+    message : 'logged out successfully'
+  })
+}
+//auth Midleware si actualiza la pagina y no se salga de la cuenta 
+//hasta que termine su tiempo de token 
+
+export const authMiddleware = async(req,res,next)=>{
+  //BUSCAMOS en token en la cookie 
+  const token =req.cookies.token;
+  if (!token)return res.status(401).json({
+    success : false ,
+    message:'UnAuthorized user'
+  })
+  //Decifrar el token
+  try{
+    const decoded =jwt.verify(token,'CLIENT_SECRET_KEY')
+    req.user=decoded
+
+  }catch(error){
+      res.status(401).json({
+        success :false,
+        message:'UnAuthorized user!'
+      })
+  }
+
+}
