@@ -17,7 +17,9 @@ import { CheckAuth } from "./components/common/check-auth"
 import { AuthLayout } from "./components/auth/layout"
 import { UnauthPage } from "./pages/unauth-page"
 import { AuthRegister } from "./pages/auth/register"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { checkAuth } from "./Store/auth-slice"
 
 
 function App() {
@@ -29,6 +31,14 @@ function App() {
   // } ;
 
   const {user, isAuthenticate} = useSelector(state=>state.auth)
+
+  //Para verificar si el token aun sigue activo para que cuando 
+  //actualice no lo lleve a login sino en la misma pagina
+  const dispatch  = useDispatch();
+  useEffect(() => {
+   dispatch(checkAuth())
+  }, [dispatch])
+  
 
   return (
     <div className="flex flex-col overflow-hidden"> 

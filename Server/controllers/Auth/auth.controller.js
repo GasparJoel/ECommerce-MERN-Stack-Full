@@ -94,7 +94,7 @@ export const loginUser =async(req,res)=>{
 }
 //logout
 
-export const  logouth = async(req,res)=>{
+export const  logoutUser = async(req,res)=>{
   res.clearCookie('token').json({
     success: true,
     message : 'logged out successfully'
@@ -103,23 +103,27 @@ export const  logouth = async(req,res)=>{
 //auth Midleware si actualiza la pagina y no se salga de la cuenta 
 //hasta que termine su tiempo de token 
 
-export const authMiddleware = async(req,res,next)=>{
-  //BUSCAMOS en token en la cookie 
-  const token =req.cookies.token;
-  if (!token)return res.status(401).json({
-    success : false ,
-    message:'UnAuthorized user'
-  })
-  //Decifrar el token
-  try{
-    const decoded =jwt.verify(token,'CLIENT_SECRET_KEY')
-    req.user=decoded
+export const authMiddleware = (req, res, next) => {
+  // Buscar el token en las cookies
+  const token = req.cookies.token;
 
-  }catch(error){
-      res.status(401).json({
-        success :false,
-        message:'UnAuthorized user!'
-      })
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized user",
+    });
   }
 
-}
+  // Decodificar y verificar el token
+  try {
+    const decoded = jwt.verify(token, 'CLIENT_SECRET_KEY'); // Usa una variable de entorno para la clave secreta
+    req.user = decoded; // Adjuntar los datos del usuario al request
+    next(); // Continuar con el siguiente middleware o controlador
+  } catch (error) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized user!",
+      error: error.message, // Opcional: para depuración
+    });
+  }
+};
