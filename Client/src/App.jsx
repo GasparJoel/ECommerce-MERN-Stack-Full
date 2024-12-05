@@ -30,7 +30,7 @@ function App() {
   //   role:"user",
   // } ;
 
-  const {user, isAuthenticate} = useSelector(state=>state.auth)
+  const {user, isAuthenticate ,isLoading} = useSelector(state=>state.auth)
 
   //Para verificar si el token aun sigue activo para que cuando 
   //actualice no lo lleve a login sino en la misma pagina
@@ -38,7 +38,10 @@ function App() {
   useEffect(() => {
    dispatch(checkAuth())
   }, [dispatch])
+
+  if(isLoading) return <div> Loading...</div>
   
+  console.log('loading: ' +isLoading,user)
 
   return (
     <div className="flex flex-col overflow-hidden"> 

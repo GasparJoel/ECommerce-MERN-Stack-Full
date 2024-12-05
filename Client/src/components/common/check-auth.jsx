@@ -4,6 +4,7 @@ export const CheckAuth = ({ isAuthenticated, user, children }) => {
   const location = useLocation();
 
   // Si no está autenticado y no está en la página de login o register
+  console.log(location.pathname ,isAuthenticated)
   if (
     !isAuthenticated && 
     !(location.pathname.includes("/login") || location.pathname.includes("/register"))
