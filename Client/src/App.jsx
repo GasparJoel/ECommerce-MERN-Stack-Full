@@ -20,6 +20,7 @@ import { AuthRegister } from "./pages/auth/register"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { checkAuth } from "./Store/auth-slice"
+import { Skeleton } from "./components/ui/skeleton"
 
 
 function App() {
@@ -39,7 +40,8 @@ function App() {
    dispatch(checkAuth())
   }, [dispatch])
 
-  if(isLoading) return <div> Loading...</div>
+  if(isLoading) return <Skeleton className="  w-[800px] bg-black h-[600px] " />
+
   
   console.log('loading: ' +isLoading,user)
 
