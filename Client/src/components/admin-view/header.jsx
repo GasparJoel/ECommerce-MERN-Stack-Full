@@ -4,7 +4,7 @@ import { Button } from "../ui/button"
 
 export const Adminheader = () => {
   return (
-    <header className="  flex items-center justify-between px-4 py-3 bg-background border-b">
+    <header className="  flex items-center justify-between px-4 py-3 bg-white border-b">
        <Button className="lg:hidden sm:block">
         <AlignJustify/>
         <span className="sr-only">Toggle menu</span>
