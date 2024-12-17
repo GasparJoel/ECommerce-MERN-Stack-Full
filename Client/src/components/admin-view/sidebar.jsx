@@ -2,6 +2,7 @@
 import { ChartNoAxesCombined, LayoutDashboard, ShoppingBasket, ShoppingCart } from "lucide-react"
 import { Fragment } from "react"
 import { useNavigate } from "react-router-dom"
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet"
 
 export const  adminSidebarMenuItems =[
   {
@@ -30,7 +31,8 @@ export const  adminSidebarMenuItems =[
     return <nav className="mt-8 flex-col flex gap-2">
       {
         adminSidebarMenuItems.map((menuitem) =>
-        <div key={menuitem.id}  onClick={()=>navigate(menuitem.path)} className="flex items-center gap-2 rounded-md px-3 py-2">
+        <div key={menuitem.id}  onClick={()=>navigate(menuitem.path)}
+         className="flex cursor-pointer items-center gap-2  rounded-md px-3 py-2 bg-white hover:text-primary-foreground hover:bg-primary/90">
             {menuitem.icon}
             <span> {menuitem.label}</span>
         </div>
@@ -39,17 +41,33 @@ export const  adminSidebarMenuItems =[
     </nav>
   }
 
-export const AdminSidebar = () => {
+export const AdminSidebar = ({open,setOpen}) => {
   
 
   const navigate = useNavigate()
   return (
     
     <Fragment>
-      <aside className=" w-64 flex-col border-r bg-white p-6 lg:flex">
+
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent  side="left" className="w-64">
+          <div className="flex flex-col h-full">
+            <SheetHeader className='border-b'>
+            <ChartNoAxesCombined size={30}/>
+              <SheetTitle>Admin Panel</SheetTitle>
+            </SheetHeader>
+            <MenuItems/>
+
+          </div>
+
+        </SheetContent>
+
+      </Sheet>
+
+      <aside className=" hidden w-64 flex-col border-r bg-white p-6 lg:flex">
         <div onClick={()=>navigate('/admin/dashboard')} className="flex items-center gap-2 cursor-pointer ">
         <ChartNoAxesCombined size={30}/>
-          <h1 className="text-xl font-extrabold">Admin Panel</h1>
+          <h1 className="text-2xl font-extrabold">Admin Panel</h1>
 
         </div>
         <MenuItems/>
