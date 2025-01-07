@@ -1,3 +1,4 @@
+import { ProductImageUpload } from "@/components/admin-view/image-upload"
 import { CommonForm } from "@/components/common/form"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
@@ -24,6 +25,9 @@ export const AdminProducts = () => {
     //Tomar los valores del formulario
     const [formData, setFormData] = useState(initialFormData)
 
+   const [imageFile, setImageFile] = useState(null)
+   const [uploadedImageUrl, setuploadedImageUrl] = useState('')
+
     //Funcion de envio
      const OnSubmit = ()=>{
 
@@ -43,7 +47,11 @@ export const AdminProducts = () => {
             <SheetHeader>
               <SheetTitle>Add new Product</SheetTitle>
             </SheetHeader>
+
+            {/* Para la imagen  */}
+            <ProductImageUpload file={imageFile} setFile={setImageFile} uploadedImageUrl={uploadedImageUrl}  setuploadedImageUrl={setuploadedImageUrl}/>
             <div className="py-6">
+              {/* Estructura del formulario  */}
               <CommonForm onSubmit={OnSubmit} formData={formData} setFormData={setFormData}
               buttonText={'add'}
               formControls={addProductFormElements}
