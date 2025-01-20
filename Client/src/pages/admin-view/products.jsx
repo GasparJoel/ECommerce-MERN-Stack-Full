@@ -49,7 +49,7 @@ export const AdminProducts = () => {
             </SheetHeader>
 
             {/* Para la imagen  */}
-            <ProductImageUpload file={imageFile} setFile={setImageFile} uploadedImageUrl={uploadedImageUrl}  setuploadedImageUrl={setuploadedImageUrl}/>
+            <ProductImageUpload imageFile={imageFile} setImageFile={setImageFile} uploadedImageUrl={uploadedImageUrl}  setuploadedImageUrl={setuploadedImageUrl}/>
             <div className="py-6">
               {/* Estructura del formulario  */}
               <CommonForm onSubmit={OnSubmit} formData={formData} setFormData={setFormData}
